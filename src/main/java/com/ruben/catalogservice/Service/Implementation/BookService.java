@@ -28,7 +28,7 @@ public class BookService implements IBookService {
     private final IAvailabilityRepository availabilityRepository;
     private final IBookMapper bookMapper;
     private final Validator<CreateBookRequest> validator;
-    Logger logger = (Logger) LoggerFactory.getLogger(BookService.class);
+    Logger logger = LoggerFactory.getLogger(BookService.class);
 
     @Autowired
     public BookService(
@@ -86,7 +86,7 @@ public class BookService implements IBookService {
         if (availableBooks != null && !availableBooks.isEmpty()) {
             return bookMapper.toDto(availableBooks);
         } else {
-            return new HashSet<BookDTO>();
+            return new HashSet<>();
         }
     }
 
@@ -109,8 +109,6 @@ public class BookService implements IBookService {
     }
 
     public List<BookDTO> getAllBooks(GetAllBooksRequest request, Pageable pageable){
-//        var books = this.bookRepository.findBooksByFilter(request, pageable);
-//        return books.map(bookMapper::toDto);
             return Collections.emptyList();
     }
 
@@ -122,9 +120,7 @@ public class BookService implements IBookService {
             result.isInvalidThrow(BookValidationException.class);
         }
 
-        var dto = new BookDTO();
         var book = bookMapper.toEntity(request);
-
 
         this.bookRepository.saveAndFlush(book);
     }
