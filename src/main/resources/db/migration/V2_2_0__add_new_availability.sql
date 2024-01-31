@@ -1,0 +1,1 @@
+INSERT INTO dev.Availability(status) VALUES ('Unavailable');

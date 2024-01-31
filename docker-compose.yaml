@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  keycloak:
+    image: ruben-cs:keycloak
+    container_name: catalog-service_keycloak_1
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "9090:8080"
+
+  postgresDB:
+    image: ruben-cs:postgres
+    container_name: postgresSQL
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test
+    ports:
+      - "5432:5432"
+
+  rabbitmq:
+    image: ruben-cs:rabbitmq
+    container_name: rabbitMQ
+    ports:
+      - "5672:5672"
+      - "15672:15672"
